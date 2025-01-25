@@ -1,58 +1,58 @@
 import java.util.Scanner;
-import java.util.Random;
 
 public class App {
+    static double balance = 0;
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
-        System.out.print("Vamos jogar um jogo de adivinhação?");
-        int lives = 4;
-        Scanner scanner = new Scanner(System.in);
-        String answ = scanner.nextLine();
-        answ = answ.toUpperCase();
-
-        while (answ.charAt(0) != 'S' && answ.charAt(0) != 'N') {
-            System.out.print("Vamos jogar um jogo de adivinhação?");
-            answ = scanner.nextLine();
-            answ = answ.toUpperCase();
-        }
-    
-        if (answ.charAt(0) == 'S') {
-            System.out.printf("Então vamos começar! Digite um número entre 0 e 15, você tem %d chances para adivinhar o que o computador está pensando. \n", lives);
-            Random rand = new Random();
-            int comp = rand.nextInt(15);
-
-            while (true) {
-                System.out.print("Chute um número: ");
-                int guess = Integer.parseInt(scanner.nextLine());
+        while(true){
+            System.out.print("\n 1. Show balance \n 2. Deposit \n 3. Withdraw \n 4. Exit \n What do you want to do? ");
+            String action = scanner.nextLine();
 
 
-                if (guess > comp) {
-                    System.out.println("Chute mais baixo!");
-                    lives -= 1;
-                }
-
-                else if (guess < comp) {
-                    System.out.println("Chute mais alto!");
-                    lives -= 1;
-                }
-
-                else if (guess == comp) {
-                    System.out.println("Parabéns! Você acertou!");
-                    break;
-                }
-
-                if (lives == 0) {
-                    System.out.println("Que pena, você perdeu! :(");
-                    break;
-                }
-                
+            if(action.equals("1")){
+                System.out.println(showBalance());
+            }
+            else if(action.equals("2")){
+                System.out.println("How much do you want to deposite?");
+                int action2 = scanner.nextInt();
+                double action3 = (double) action2;
+                System.out.println(deposite(action3));
+            }
+            else if(action.equals("3")){
+                System.out.println("How much do you want to withdraw?");
+                int action2 = scanner.nextInt();
+                double action3 = (double) action2;
+                withdraw(action3);
+            }
+            else if(action.equals("4")){
+                System.out.println("Thanks for playing!");
+                scanner.close();
+                break;
             }
 
         }
-
-        else if (answ.charAt(0) == 'N') {
-            System.out.println("Tudo bem, tenha um bom dia");
-        }
-
-        scanner.close();
+        
     }
+
+    static String showBalance(){
+       return("Yor balance is " + balance);
+    }
+
+    static String deposite(double quant){
+        balance += quant;
+        return("You deposited " + quant);
+    }
+
+    static void withdraw(double quant){
+        if(balance < quant){
+           System.out.println("You don't have balance enough.");
+        }
+        else{
+            balance -= quant;
+            System.out.println("You withdrawed " + quant);
+        }
+        
+    }
+
 }
+

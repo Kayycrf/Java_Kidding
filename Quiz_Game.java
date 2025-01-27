@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class App {
+public class Quiz_Game {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         int score = 0;

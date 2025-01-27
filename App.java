@@ -1,58 +1,87 @@
 import java.util.Scanner;
 
 public class App {
-    static double balance = 0;
-    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
-        while(true){
-            System.out.print("\n 1. Show balance \n 2. Deposit \n 3. Withdraw \n 4. Exit \n What do you want to do? ");
-            String action = scanner.nextLine();
-
-
-            if(action.equals("1")){
-                System.out.println(showBalance());
-            }
-            else if(action.equals("2")){
-                System.out.println("How much do you want to deposite?");
-                int action2 = scanner.nextInt();
-                double action3 = (double) action2;
-                System.out.println(deposite(action3));
-            }
-            else if(action.equals("3")){
-                System.out.println("How much do you want to withdraw?");
-                int action2 = scanner.nextInt();
-                double action3 = (double) action2;
-                withdraw(action3);
-            }
-            else if(action.equals("4")){
-                System.out.println("Thanks for playing!");
-                scanner.close();
-                break;
-            }
-
-        }
+        Scanner scanner = new Scanner(System.in);
+        int score = 0;
+        //Array of questions
+        String [] questions = {"\n [FÁCIL] \n  1 - Qual o maior campeão do Brasileirão?", "\n [FÁCIL] \n 2 - Qual estado brasileiro possui mais títulos internacionais?", "\n [FÁCIL] 3 - \n Qual o time carioca com mais títulos oficiais?", "\n [MÉDIA] 4- Qual desses times não possui 3 libertadores?","\n [DIFÍCIL] \n 5 - Qual foi foi o segundo campeão do brasileirão? "};
+        //Array of options
+        String [] options = {
+            "\n a. Flamengo \n b. Palmeiras \n c. São Paulo \n d. Corinthians \n e. Grêmio", 
+            "\n a. Bahia \n b. Rio Grande do Sul \n c. São Paulo \n d. Rio de Janeiro \n e. Minas Gerais",
+            "\n a. Botafogo \n b. Flamengo \n c. Vasco \n d. Fluminense \n e. Bangu",
+            "\n a. Grêmio \n b. Santos \n c. Vasco \n d. Flamengo \n e. São Paulo",
+            "\n a. Sport \n b. Internacional \n c. Atlético Mineiro \n d. Bahia \n e. Mirassol"
+        };
         
-    }
-
-    static String showBalance(){
-       return("Yor balance is " + balance);
-    }
-
-    static String deposite(double quant){
-        balance += quant;
-        return("You deposited " + quant);
-    }
-
-    static void withdraw(double quant){
-        if(balance < quant){
-           System.out.println("You don't have balance enough.");
-        }
-        else{
-            balance -= quant;
-            System.out.println("You withdrawed " + quant);
-        }
         
-    }
+        System.out.println("Vamos jogar um quiz! Vamos para as questões: ");
+
+        for(int i = 0; i < 5; i++){
+            System.out.println(questions[i]);
+            System.out.println(options[i]);
+            System.out.print("\n Resposta: ");
+            String answ = scanner.next();
+
+            switch(i){
+                case 0:
+                    if(answ.equals("b")){
+                        System.out.println("\n Você acertou!");
+                        score++;
+                        break;
+                    }
+                    else{
+                        System.out.println("\n Você errou :(");
+                        break;
+                    }
+                case 1:
+                    if(answ.equals("c")){
+                        System.out.println("\n Você acertou!");
+                        score++;
+                         break;
+                    }
+                    else{
+                        System.out.println("\n Você errou :(");
+                        break;
+                    }
+                case 2:
+                    if(answ.equals("b")){
+                        System.out.println("\n Você acertou!");
+                        score++;
+                        break;
+                    }
+                    else{
+                        System.out.println("\n Você errou :(");
+                        break;
+                    }
+                case 3:
+                    if(answ.equals("c")){
+                         System.out.println("\n Você acertou!");
+                        score++;
+                        break;
+                    }
+                    else{
+                        System.out.println("\n Você errou :(");
+                        break;
+                    }
+                case 4:
+                    if(answ.equals("d")){
+                        System.out.println("\n Você acertou!");
+                        score++;
+                        break;
+                    }
+                    else{
+                        System.out.println("\n Você errou :(");
+                        break;
+                    }
+                }
+            }
+
+            scanner.close();
+            System.out.printf("\n Sua pontuação foi de %d pontos", score);
+                
+        }
 
 }
 
